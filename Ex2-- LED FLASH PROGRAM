@@ -1,0 +1,21 @@
+ORG 0000H
+SJMP 0030H
+ORG 0030H 
+GO:
+MOV P1, #00H
+ACALL DELAY
+MOV P1, #0FFH
+ACALL DELAY
+AJMP GO
+DELAY: 
+MOV R1,#0F0H ; delay as per user
+MOV R2,#0F0H
+MOV R3,#10H
+D1: 
+DJNZ R1,D1
+MOV R1,#0A0H
+DJNZ R2,D1 ;decrement and jump if not zero R2
+MOV R2,#0A0H
+DJNZ R3,D1 ;decrement and jump if not zero R3
+RET
+END
